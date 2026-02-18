@@ -1,3 +1,8 @@
+---
+name: conventional-commit
+description: Guide for writing structured commit messages following Conventional Commits.
+---
+
 # Conventional Commit Messages
 
 ## Overview

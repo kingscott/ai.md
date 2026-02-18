@@ -1,3 +1,8 @@
+---
+name: using-git-worktrees
+description: Workflow for creating and validating isolated git worktrees safely.
+---
+
 # Using Git Worktrees - Complete Skill Documentation
 
 ## Overview

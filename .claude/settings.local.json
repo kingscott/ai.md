@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:skills.sh)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npx:*)",
+      "Bash(git -C /home/kingscott/Software/ai.md status)",
+      "Bash(git -C /home/kingscott/Software/ai.md branch --show-current)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh pr create:*)"
+    ]
+  }
+}

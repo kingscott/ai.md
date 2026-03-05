@@ -1,6 +1,6 @@
 ---
 name: write-pr-description
-description: Draft and refine GitHub pull request descriptions from branch diffs using the repository PR template. Use when asked to write or improve a PR body from current branch changes, including merge-base diff analysis, before/after section decisions, QA checklist-safe formatting, and image-theme prompt writing.
+description: Draft and refine GitHub pull request descriptions from branch diffs using the repository PR template. Use when asked to write or improve a PR body from current branch changes, including merge-base diff analysis, before/after section decisions, QA checklist-safe formatting, and strict no-AI-image handling.
 ---
 
 # Write PR Description
@@ -26,10 +26,9 @@ Draft a PR description that is accurate to the code diff, aligned with the repos
 - If the change is backend-only (for example refactors, models, migrations, internal plumbing), omit before/after entirely.
 - Never write `N/A` in before/after.
 - If uncertain whether an interface changed, inspect touched files and prefer omission unless there is a clear interface delta.
-- Never leave image theme text as `disabled` when the field exists.
-- Write a witty or imaginative image-generation prompt tied to the change; if direct relevance is weak, use a fantasy metaphor.
-- Prefer either realistic photography style or animation-studio ink style for image-theme prompts.
-- Return prompt text only for image theme, never generate an image.
+- Never generate AI images or image-generation prompts.
+- If a template includes an image theme/prompt section and it is optional, remove that section.
+- If an image section is required by template structure, use plain text: `No AI-generated image provided for this PR.`
 
 ## Formatting Rules
 
@@ -50,5 +49,6 @@ Draft a PR description that is accurate to the code diff, aligned with the repos
 - Template sections are complete or intentionally removed.
 - Before/after is included only for concrete interface changes.
 - Net-new interface changes use explicit before context (`This functionality did not exist.`).
+- No AI-generated image or image prompt appears in the final PR body.
 - QA checklist renders correctly and is visually separated from prior lists.
 - Final answer is one fenced code block only.

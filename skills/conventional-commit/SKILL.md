@@ -1,84 +1,124 @@
 ---
 name: conventional-commit
-description: Guide for writing structured commit messages following Conventional Commits.
+description: Write or review Conventional Commit messages with clear type, scope, subject, and optional body/footer formatting. Use when creating commit messages, suggesting commit text, or checking commit message validity.
+license: MIT
 ---
 
-# Conventional Commit Messages
+# Conventional Commit
 
-## Overview
+Use this skill when the user wants help writing, revising, validating, or executing a commit message that should follow the Conventional Commits convention.
 
-This skill provides guidance on creating structured commit messages following the Conventional Commits specification. It helps maintain clear git history and ensures commits are meaningful and standardized.
+## Workflow
 
-## Prerequisites
+1. Identify the change type.
+   - Prefer `feat`, `fix`, `refactor`, `docs`, `test`, `build`, `chore`, `ci`, `deps`, `perf`, `style`, or `revert`.
+   - Pick the narrowest accurate type for the change.
 
-Work on feature branches rather than main branches (e.g., `feat/add-user-auth`, `fix/null-pointer-error`).
+2. Draft the header in this format:
+   ```text
+   <type>(<scope>): <subject>
+   ```
+   - Scope is optional.
+   - Use imperative, present-tense wording.
+   - Capitalize the first word of the subject.
+   - Do not end the subject with a period.
+   - Keep the subject to 70 characters or fewer.
 
-## Format Structure
+3. Add an optional body when the change needs context.
+   - Explain what changed and why.
+   - Wrap lines to 100 characters or fewer.
+   - Use plain text with real line breaks between sections.
 
+4. Add an optional footer for breaking changes or issue references.
+   - Use `BREAKING CHANGE:` for incompatible behavior.
+   - Use references like `Closes #123` or `Fixes #456`.
+
+5. Validate the final message before returning or using it.
+   - Ensure the header is present.
+   - Ensure the subject is specific and reviewable.
+   - Ensure each section uses plain text only.
+   - Ensure the message does not include literal escape sequences or HTML break tags such as `\n`, `\r`, `<br>`, or `<br/>`.
+   - When multiple sections are needed, separate them with actual blank lines instead of encoded placeholders.
+
+6. When executing `git commit`, preserve real paragraph breaks.
+   - Prefer `git commit -F <file>` when writing a multi-line message.
+   - If using `git commit -m`, use separate `-m` flags for header, body, and footer paragraphs.
+   - Never build the commit message by embedding `\n`, `\r`, `<br>`, or `<br/>` inside the text passed to Git.
+
+## Type Guide
+
+- `feat` for a new feature
+- `fix` for a bug fix
+- `refactor` for internal code changes without behavior changes
+- `docs` for documentation-only changes
+- `test` for adding or correcting tests
+- `build` for build system or dependency tooling changes
+- `chore` for maintenance work outside product code
+- `ci` for CI configuration or automation changes
+- `deps` for dependency updates
+- `perf` for performance improvements
+- `style` for formatting-only changes
+- `revert` for reverting an earlier commit
+
+## Output Rules
+
+- Return the commit message as plain text only.
+- Use actual newlines if the message has a body or footer.
+- Never include code fences around the final commit message unless the user explicitly asks for them.
+- Never include encoded separators, markup, or transport artifacts inside the message text.
+- Treat real blank lines as required formatting, not optional decoration.
+
+## Examples
+
+Feature:
+
+```text
+feat(auth): Add OAuth2 login support
+
+Support Google OAuth2 sign-in for customer accounts.
+This reduces password resets and speeds up onboarding.
+
+Closes #234
 ```
-<type>(<scope>): <subject>
 
-<body>
+Bug fix:
 
-<footer>
+```text
+fix(api): Handle null values in user profile
+
+Avoid crashes when optional profile fields are missing.
+Return safe defaults instead of raising an exception.
 ```
 
-- **Header**: Mandatory (type, optional scope, subject)
-- **Body**: Optional (explanation of what and why)
-- **Footer**: Optional (breaking changes, issue references)
+Breaking change:
 
-**Important**: All lines must stay under 100 characters.
+```text
+feat(api)!: Restructure response format
 
-## Commit Types
+BREAKING CHANGE: API responses now use camelCase field names.
+Update client applications to match the new contract.
+```
 
-- `feat` - A new feature
-- `fix` - A bug fix
-- `refactor` - Code change that neither fixes a bug nor adds a feature
-- `docs` - Documentation only changes
-- `test` - Adding missing tests or correcting existing tests
-- `build` - Changes that affect the build system or external dependencies
-- `chore` - Other changes that don't modify src or test files
-- `ci` - Changes to CI configuration files and scripts
-- `deps` - Dependency updates
-- `perf` - Performance improvements
-- `style` - Code style changes (formatting, missing semi-colons, etc.)
-- `revert` - Reverts a previous commit
+### Commit trailer
 
-## Subject Line Rules
+Include the following trailer on commit messages **only when the commit contains AI-generated code**:
 
-1. **Use imperative, present tense**: "Add feature" not "Added feature" or "Adds feature"
-2. **Capitalize the first letter**: "Add" not "add"
-3. **No period at the end**: "Add feature" not "Add feature."
-4. **Maximum 70 characters**
+Co-Authored-By: Codex <noreply@openai.com> 
 
-## Body Guidelines
+when using Codex models or 
 
-- Explain the **what** and **why**, not the how
-- Use imperative, present tense (same as subject)
-- Include motivation for the change
-- Contrast with previous behavior when applicable
-- Wrap lines at 100 characters
+Co-Authored-By: Claude <noreply@anthropic.com>
 
-## Footer
-
-- Use for breaking changes and issue references
-- Breaking changes: Start with `BREAKING CHANGE:` followed by description
-- Issue references: `Closes #123`, `Fixes #456`
-
-## Breaking Changes
-
-Indicate breaking changes in one of two ways:
-
-1. Add `!` after type/scope: `feat(api)!: remove deprecated endpoints`
-2. Add footer: `BREAKING CHANGE: deprecated endpoints have been removed`
-
-Breaking changes correlate with major version updates in semantic versioning.
+Do not include it for commits where you are only running git commands or summarizing human-written changes.
 
 ## Branch Naming Convention
 
-Branch names should follow the pattern: `<type>/<short-description>`
+Branch names should follow the pattern: `<type>/<short-description>`.
+
+When a Jira ticket is known, prefer: `<ticket-number>/<subtask-number>/<short-description>`.
 
 Examples:
+- `JOB-133123/JOB-321456/add-new-button-to-form`
 - `feat/add-user-auth`
 - `fix/null-pointer-error`
 - `docs/update-readme`
@@ -86,59 +126,16 @@ Examples:
 
 ## Core Principles
 
-1. **Single, stable change**: Each commit should represent one logical change
-2. **Independently reviewable**: Commits should make sense on their own
-3. **Working state**: Repository should remain in a working state after each commit
+- **Single, stable change**: Each commit should represent one logical change.
+- **Independently reviewable**: Commits should make sense on their own.
+- **Working state**: The repository should remain in a working state after each commit.
 
-## Examples
+## Red Flags
 
-### Feature with scope
-```
-feat(auth): add OAuth2 login support
-
-Implement OAuth2 authentication flow using Google provider.
-This allows users to sign in with their Google accounts.
-
-Closes #234
-```
-
-### Bug fix
-```
-fix(api): handle null values in user profile
-
-Previous behavior would crash when optional fields were null.
-Now gracefully handles missing data with default values.
-
-Fixes #456
-```
-
-### Breaking change
-```
-feat(api)!: restructure response format
-
-BREAKING CHANGE: API responses now use camelCase instead of snake_case
-for all field names. Update client applications accordingly.
-```
-
-### Simple change
-```
-docs: update installation instructions
-```
-
-## Red Flags - Never Do These
-
-- Use past tense in subject ("Added" instead of "Add")
-- End subject with a period
-- Exceed 70 characters in subject line
-- Exceed 100 characters in body/footer lines
-- Mix multiple unrelated changes in one commit
-- Leave subject vague ("fix stuff", "update code")
-- Skip the commit type
-
-## License
-
-MIT
-
-## Version
-
-1.0.0
+- Do not use past tense in the subject.
+- Do not end the subject with a period.
+- Do not exceed 70 characters in the subject.
+- Do not exceed 100 characters on body or footer lines.
+- Do not combine unrelated changes in one commit message.
+- Do not include literal `\n`, literal `\r`, `<br>`, `<br/>`, or similar encoded line breaks.
+- Do not pass a multi-line commit body to Git as a single shell string with embedded escape sequences.

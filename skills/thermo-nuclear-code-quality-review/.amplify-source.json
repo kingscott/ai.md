@@ -1,0 +1,9 @@
+{
+  "commit": "cfd81b3961ef5fddc90e9f2994fa1c87cd454e61",
+  "name": "thermo-nuclear-code-quality-review",
+  "path": "thermos/skills/thermo-nuclear-code-quality-review",
+  "ref": "main",
+  "remote": "https://github.com/cursor/plugins.git",
+  "repo": "cursor/plugins",
+  "syncedAt": "2026-06-15T15:21:14.896Z"
+}

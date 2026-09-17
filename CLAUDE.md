@@ -49,8 +49,7 @@ When working is being completed in a branch or worktree branch, always use `king
 
 ## Pull Requests
 
-When writing or updating a PR description, use the `write-pr-description` skill at
-`/Users/kingscott/.agents/skills/write-pr-description/SKILL.md` when it is available.
+When writing or updating a PR description, keep it simple and straightforward, per the writing style above.
 
 # Local dev at Customer.io (stack + cio-wt)
 
@@ -87,18 +86,8 @@ as their own PR; use the `remote-stack:pr-services-<N>` guest label on the ui PR
 need to be seen in one environment. Plain `remote-stack` on a PR creates `pr-<repo>-<N>`, and
 `skip-design-studio` makes it boot faster.
 
-# # Subagent routing
+# Subagent routing
 
-- Avoid using Fable
-- Prefer Sonnet-5 for cost and speed whenever the task is well-specified and locally
-  verifiable.
-- Use Opus-5 for maximum ability or long-running reasoning, including ambiguous,
-  technically difficult, tool-heavy, or costly-to-get-wrong work.
-- For unsupervised repository changes, use Sonnet-5 when straightforward and Opus-5 when
-  they require sustained reasoning or higher capability.
-- For architectural, security, or adversarial reviews, use Opus.
-
-Codex mechanics:
-
-- Parallel Claude implementation agents must use isolated worktrees and sonnet-5
-- Only use Opus-5 when complex orchestration is required
+Model choice and subagent delegation rules live in
+[`MODEL-ROUTING.md`](MODEL-ROUTING.md) in this repo. That file is the single
+source of truth; if anything here or in a skill disagrees with it, the doc wins.

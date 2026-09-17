@@ -45,8 +45,7 @@ When working is being completed in a branch or worktree branch, always use `king
 
 ## Pull Requests
 
-When writing or updating a PR description, use the `write-pr-description` skill at
-`/Users/kingscott/.agents/skills/write-pr-description/SKILL.md` when it is available.
+When writing or updating a PR description, keep it simple and straightforward.
 
 # Local dev at Customer.io (stack + cio-wt)
 
@@ -85,16 +84,6 @@ need to be seen in one environment. Plain `remote-stack` on a PR creates `pr-<re
 
 # Subagent routing
 
-- Avoid using Terra
-- Prefer Luna for cost and speed whenever the task is well-specified and locally
-  verifiable.
-- Use Sol for maximum ability or long-running reasoning, including ambiguous,
-  technically difficult, tool-heavy, or costly-to-get-wrong work.
-- For unsupervised repository changes, use Luna when straightforward and Sol when
-  they require sustained reasoning or higher capability.
-- For architectural, security, or adversarial reviews, use Sol.
-
-Codex mechanics:
-
-- Parallel Codex implementation agents must use isolated worktrees and gpt-5.6-luna
-- Only use gpt-5.6-sol or gpt-6-astra is complex orchestration is required
+Model choice and subagent delegation rules live in
+[`MODEL-ROUTING.md`](MODEL-ROUTING.md) in this repo. That file is the single
+source of truth; if anything here or in a skill disagrees with it, the doc wins.

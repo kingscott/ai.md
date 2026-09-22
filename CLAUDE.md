@@ -13,6 +13,10 @@
 ## Writing style
 - The language used for writing deliverables (PR descriptions, responses to PR comments, review comments, etc) should be simple and straightforward, easily understood by a human
 - Avoid the use of bespoke acronyms, they don't make things easier to understand
+- Describe the work, never the writing or your own judgment of it.
+- No approval adjectives aimed at the artifact: honest, better, cleaner, simpler, fair, reasonable.
+- No preemptive self-justification: "better than X", "rather than", "instead of" where X is an objection no one raised.
+- If deleting the sentence loses no fact, delete it.
 
 ## TypeScript
 
@@ -91,3 +95,11 @@ need to be seen in one environment. Plain `remote-stack` on a PR creates `pr-<re
 Model choice and subagent delegation rules live in
 [`MODEL-ROUTING.md`](MODEL-ROUTING.md) in this repo. That file is the single
 source of truth; if anything here or in a skill disagrees with it, the doc wins.
+
+# Jev for semantic decisions
+
+- Use Jev as a typed judgment layer when routing, escalation, verification, or prioritization requires semantic understanding.
+- Ask narrow questions over explicit state and prefer Choice, Noul, or Score judgments. Keep workflow, policy, permissions, and execution in code or with the lead.
+- Use Jev to assess work shape, ambiguity, consequence, parallelism, and verification needs. Map those signals through `MODEL-ROUTING.md`; do not let Jev invent models, tools, permissions, or final architectural decisions.
+- Run independent judgments together when they use the same state. Treat probabilities as uncertainty about the judgment, not proof of correctness, and calibrate thresholds against representative tasks.
+- If Jev is unavailable, fails, or is uncertain, use the existing deterministic routing. Explicit user instructions, repository rules, and safety boundaries always win.

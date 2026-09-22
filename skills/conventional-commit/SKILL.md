@@ -1,6 +1,6 @@
 ---
 name: conventional-commit
-description: Write or review Conventional Commit messages with clear type, scope, subject, and optional body/footer formatting. Use when creating commit messages, suggesting commit text, or checking commit message validity.
+description: Write or review Conventional Commit messages with clear type, scope, subject, and optional body/footer formatting. Use when creating commit messages, suggesting commit text, checking commit message validity, or running `git commit` / staging and committing changes for any reason.
 license: MIT
 ---
 
@@ -77,8 +77,6 @@ feat(auth): Add OAuth2 login support
 
 Support Google OAuth2 sign-in for customer accounts.
 This reduces password resets and speeds up onboarding.
-
-Closes #234
 ```
 
 Bug fix:
@@ -99,27 +97,15 @@ BREAKING CHANGE: API responses now use camelCase field names.
 Update client applications to match the new contract.
 ```
 
-### Commit trailer
-
-Include the following trailer on commit messages **only when the commit contains AI-generated code**:
-
-Co-Authored-By: Codex <noreply@openai.com> 
-
-when using Codex models or 
-
-Co-Authored-By: Claude <noreply@anthropic.com>
-
-Do not include it for commits where you are only running git commands or summarizing human-written changes.
-
 ## Branch Naming Convention
 
-Branch names should follow the pattern: `<type>/<short-description>`.
+Branch names should follow the pattern: `<type>/<short-description>`. Prefix all branches with `kingscott/`. 
 
-When a Jira ticket is known, prefer: `<ticket-number>/<subtask-number>/<short-description>`.
+If specifically instructed, use this format if a tracked issue/ticket is used: `<ticket-number>/<subtask-number>/<short-description>`.
 
 Examples:
 - `JOB-133123/JOB-321456/add-new-button-to-form`
-- `feat/add-user-auth`
+- `kingscott/add-user-auth`
 - `fix/null-pointer-error`
 - `docs/update-readme`
 - `refactor/simplify-api`

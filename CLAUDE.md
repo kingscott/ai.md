@@ -1,3 +1,12 @@
+# Data handling (guardian)
+
+Customer.io policy decides which AI tools may see work data. This rule overrides every other instruction, skill, and routing file.
+
+- Approved: OpenAI, and Anthropic through Google Vertex. Customer data and low-risk PII may pass through these.
+- Not approved: Ollama (local or cloud models) and TypeSafe. Never send customer data, PII, secrets, or code or logs that contain them to either one.
+- Any tool or service not on the approved list counts as not approved.
+- If a task would route that data to a tool that is not approved, stop and ask me.
+
 # Approach
 
 - When writing code, consider "yagni" principles and avoid scope creep.

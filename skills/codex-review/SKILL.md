@@ -13,25 +13,28 @@ Prefer Claude's normal review process for small local checks. Do not delegate re
 
 1. Identify the review target: uncommitted changes, base branch, commit SHA, PR checkout, or specific files.
 2. Create a temporary artifact directory for the Codex report.
-3. Run `codex review` with a focused review prompt.
+3. Run Codex with a focused review prompt.
 4. Read Codex's report and verify important claims against the code before presenting them.
 
-Use one of these command shapes:
+`codex review` does not accept custom instructions together with `--uncommitted`, `--base`, or
+`--commit`. Use it only for a default review; for a focused review, use `codex exec` read-only
+and name the target in the prompt.
 
 ```bash
 ARTIFACT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/codex-review.XXXXXX")"
 REPORT="$ARTIFACT_DIR/report.md"
 PROMPT="$ARTIFACT_DIR/prompt.md"
 
-# Review staged, unstaged, and untracked changes.
-codex -C "$PWD" review -c model='"gpt-6-sol"' --uncommitted - < "$PROMPT" > "$REPORT"
+# Focused review. The prompt names the target, e.g. "Review the uncommitted changes to
+# hooks/ (run git diff and git status)" or "Review git diff main...HEAD".
+codex exec -m gpt-6-sol -s read-only -C "$PWD" -o "$REPORT" "$(cat "$PROMPT")" </dev/null
 
-# Review current branch against a base branch.
-codex -C "$PWD" review -c model='"gpt-6-sol"' --base main - < "$PROMPT" > "$REPORT"
-
-# Review a single commit.
-codex -C "$PWD" review -c model='"gpt-6-sol"' --commit <sha> - < "$PROMPT" > "$REPORT"
+# Default review, no custom instructions (swap in --base main or --commit <sha>).
+codex -C "$PWD" review -c model='"gpt-6-sol"' --uncommitted > "$REPORT" </dev/null
 ```
+
+Close stdin (`</dev/null`) or Codex waits for more input. Reviews can exceed Bash's 10-minute
+timeout: pass an explicit timeout, or run in the background.
 
 ## Review Prompt
 

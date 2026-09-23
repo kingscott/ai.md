@@ -31,7 +31,7 @@ codex exec \
   --add-dir "$ARTIFACT_DIR" \
   -s danger-full-access \
   -o "$REPORT" \
-  "$(cat "$PROMPT")"
+  "$(cat "$PROMPT")" </dev/null
 ```
 
 `-s danger-full-access` is required here: app launching, browser automation, and simulator control operate outside the repo sandbox. Keep the prompt's allowed actions narrow to compensate.

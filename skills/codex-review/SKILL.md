@@ -1,6 +1,6 @@
 ---
 name: codex-review
-description: Ask Codex CLI (gpt-5.6) for an independent code review of uncommitted changes, a branch diff, a commit, or a specific implementation. This is how gpt-5.6-sol is invoked for code review work. Use when the user asks Claude to have Codex or gpt-5.6-sol review work, when the model-selection rubric calls for a gpt-5.6-sol review perspective, or when Codex should audit a diff, find bugs or regressions, or compare Claude's implementation against requirements. For a review by Claude itself, use the normal review process instead.
+description: Ask Codex CLI (gpt-6-sol) for an independent code review of uncommitted changes, a branch diff, a commit, or a specific implementation. Use when the user asks Claude to have Codex or gpt-6-sol review work, when MODEL-ROUTING.md calls for a gpt-6-sol review perspective, or when Codex should audit a diff, find bugs or regressions, or compare Claude's implementation against requirements. For a review by Claude itself, use the normal review process instead.
 ---
 
 # Codex Review
@@ -24,13 +24,13 @@ REPORT="$ARTIFACT_DIR/report.md"
 PROMPT="$ARTIFACT_DIR/prompt.md"
 
 # Review staged, unstaged, and untracked changes.
-codex -C "$PWD" review --uncommitted - < "$PROMPT" > "$REPORT"
+codex -C "$PWD" review -c model='"gpt-6-sol"' --uncommitted - < "$PROMPT" > "$REPORT"
 
 # Review current branch against a base branch.
-codex -C "$PWD" review --base main - < "$PROMPT" > "$REPORT"
+codex -C "$PWD" review -c model='"gpt-6-sol"' --base main - < "$PROMPT" > "$REPORT"
 
 # Review a single commit.
-codex -C "$PWD" review --commit <sha> - < "$PROMPT" > "$REPORT"
+codex -C "$PWD" review -c model='"gpt-6-sol"' --commit <sha> - < "$PROMPT" > "$REPORT"
 ```
 
 ## Review Prompt

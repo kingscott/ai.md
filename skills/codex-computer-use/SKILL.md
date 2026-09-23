@@ -1,6 +1,6 @@
 ---
 name: codex-computer-use
-description: Ask Codex CLI (gpt-5.6) to run local app verification that needs computer use, browser automation, simulators, screenshots, app launching, or independent runtime inspection. This is how gpt-5.6 is invoked for computer-use work. Use when the user asks Claude to test a flow, verify UI behavior, inspect a running app, capture screenshots, or report confirmation and feedback about implemented behavior that benefits from computer use functionality.
+description: Ask Codex CLI (gpt-6-sol) to run local app verification that needs computer use, browser automation, simulators, screenshots, app launching, or independent runtime inspection. Use when the user asks Claude to test a flow, verify UI behavior, inspect a running app, capture screenshots, or report confirmation and feedback about implemented behavior that benefits from computer use functionality.
 ---
 
 # Codex Computer Use
@@ -26,6 +26,7 @@ PROMPT="$ARTIFACT_DIR/prompt.md"
 
 # Write a self-contained prompt to $PROMPT, then run:
 codex exec \
+  -m gpt-6-sol \
   -C "$PWD" \
   --add-dir "$ARTIFACT_DIR" \
   -s danger-full-access \

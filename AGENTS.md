@@ -7,6 +7,8 @@
 - No sycophantic openers or closing thoughts.
 - No emojis or em-dashes.
 - Do not guess APIs, versions, flags, commit SHAs, or package names. Verify by reading code or docs before asserting.
+- Always strive for concise, simple solutions
+- If a problem can be solved a simpler way, propose it
 
 # Personal preferences
 
@@ -16,19 +18,14 @@
 
 ## Commands
 
-- Don't run dev server commands (ex: `pnpm run dev`) - assume it's running already. Exception: `cio-wt` commands are allowed, see "Local dev at Customer.io" below
+- Don't run dev server commands (ex: `pnpm run dev`) - assume it's running already
 - Don't run build commands unless specifically told to
-- Focus on checking commands like linting and typecheck
-
-## Code style
-
-- Always strive for concise, simple solutions
-- If a problem can be solved a simpler way, propose it
+- Focus on checking commands like linting, typecheck, and `cio-wt`
 
 ## General preferences
 
 - If asked to do too much work at once, stop and state that clearly
-- If computer use is helpful for completing or verifying work, shell out to gpt-5.6-sol with Codex for it
+- If computer use is helpful for completing or verifying work, use the codex-computer-use skill (gpt-6-sol)
 - If you're commenting on a pull request, use the following template:
 ```md
 > [!NOTE]
@@ -41,7 +38,6 @@
 ## Branch prefix
 
 When working is being completed in a branch or worktree branch, always use `kingscott/` as the branch prefix.
-
 
 ## Pull Requests
 
@@ -84,14 +80,12 @@ need to be seen in one environment. Plain `remote-stack` on a PR creates `pr-<re
 
 # Subagent routing
 
-Model choice and subagent delegation rules live in
-[`MODEL-ROUTING.md`](MODEL-ROUTING.md) in this repo. That file is the single
-source of truth; if anything here or in a skill disagrees with it, the doc wins.
+Before choosing a model or delegating, read `~/code/ai.md/MODEL-ROUTING.md`.
 
-# Jev for semantic decisions
+# TypeSafe
 
-- Use Jev as a typed judgment layer when routing, escalation, verification, or prioritization requires semantic understanding.
-- Ask narrow questions over explicit state and prefer Choice, Noul, or Score judgments. Keep workflow, policy, permissions, and execution in code or with the lead.
-- Use Jev to assess work shape, ambiguity, consequence, parallelism, and verification needs. Map those signals through `MODEL-ROUTING.md`; do not let Jev invent models, tools, permissions, or final architectural decisions.
-- Run independent judgments together when they use the same state. Treat probabilities as uncertainty about the judgment, not proof of correctness, and calibrate thresholds against representative tasks.
-- If Jev is unavailable, fails, or is uncertain, use the existing deterministic routing. Explicit user instructions, repository rules, and safety boundaries always win.
+- Use the `typesafe-ai` skill when building or changing a TypeSafe integration, or when I ask for it.
+- Call the API directly only when code or a script needs a typed judgment (Choice, Noul, Score) over explicit evidence, such as a workflow handing out several tasks.
+- Do not call it for routing, delegation, factual lookups, rules already written down, or easily reversed choices.
+- Output is evidence, not the decision. If the call fails or the key is missing, decide without it and say so once.
+- Key: `TYPESAFE_API_KEY` in ~/.zshrc.

@@ -21,6 +21,9 @@ Customer.io policy decides which AI tools may see work data. This rule overrides
 
 # Personal preferences
 
+## Commits
+@~/code/ai.md/COMMIT.md
+
 ## TypeScript
 
 - Never use `any` unless there's not another typed solution or specifically instructed

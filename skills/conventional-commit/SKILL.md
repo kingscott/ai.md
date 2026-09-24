@@ -25,13 +25,19 @@ Use this skill when the user wants help writing, revising, validating, or execut
    - Keep the subject to 70 characters or fewer.
 
 3. Add an optional body when the change needs context.
-   - Explain what changed and why.
+   - Explain the why of the changes in the commit.
    - Wrap lines to 100 characters or fewer.
    - Use plain text with real line breaks between sections.
 
 4. Add an optional footer for breaking changes or issue references.
    - Use `BREAKING CHANGE:` for incompatible behavior.
    - Use references like `Closes #123` or `Fixes #456`.
+   - When an AI agent contributed, add a GitHub-recognized `Co-authored-by`
+     trailer that includes both the provider and exact model name:
+     `Co-authored-by: OpenAI Codex (gpt-6-luna) <verified-address>`.
+     Use the matching provider/model for Claude or Ollama Cloud, and use the
+     provider's configured co-author address. Do not guess an address; omit the
+     trailer if no verified address is available.
 
 5. Validate the final message before returning or using it.
    - Ensure the header is present.

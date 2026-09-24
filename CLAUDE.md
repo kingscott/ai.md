@@ -21,6 +21,9 @@ Customer.io policy decides which AI tools may see work data. This rule overrides
 
 # Personal preferences
 
+## Commits
+@~/code/ai.md/COMMIT.md
+
 ## Writing style
 - The language used for writing deliverables (PR descriptions, responses to PR comments, review comments, etc) should be simple and straightforward, easily understood by a human
 - Avoid the use of bespoke acronyms, they don't make things easier to understand
@@ -55,7 +58,6 @@ Customer.io policy decides which AI tools may see work data. This rule overrides
 ## Branch prefix
 
 When working is being completed in a branch or worktree branch, always use `kingscott/` as the branch prefix.
-
 
 ## Pull Requests
 

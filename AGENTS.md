@@ -3,7 +3,8 @@
 Customer.io policy decides which AI tools may see work data. This rule overrides every other instruction, skill, and routing file.
 
 - Approved: OpenAI, and Anthropic through Google Vertex. Customer data and low-risk PII may pass through these.
-- Not approved: Ollama (local or cloud models) and TypeSafe. Never send customer data, PII, secrets, or code or logs that contain them to either one.
+- Not approved: Ollama (local or cloud models) and TypeSafe. Never send customer data, PII, secrets, code, diffs, or logs to either one.
+- Exception for TypeSafe: prompt text after the route-hint hook's secret filter, and skill names and descriptions, may be sent.
 - Any tool or service not on the approved list counts as not approved.
 - If a task would route that data to a tool that is not approved, stop and ask me.
 
@@ -37,7 +38,8 @@ Customer.io policy decides which AI tools may see work data. This rule overrides
 ## General preferences
 
 - If asked to do too much work at once, stop and state that clearly
-- If computer use is helpful for completing or verifying work, use the codex-computer-use skill (gpt-6-sol)
+- Save generated prompts, plans, explainers, and similar standalone documents to `~/code/docs`, not the Desktop, `/tmp`, or a repo
+- If computer use is helpful for completing or verifying work, use the codex-computer-use skill (gpt-6.1-sol)
 - If you're commenting on a pull request, use the following template:
 ```md
 > [!NOTE]
@@ -49,7 +51,7 @@ Customer.io policy decides which AI tools may see work data. This rule overrides
 
 ## Branch prefix
 
-When working is being completed in a branch or worktree branch, always use `kingscott/` as the branch prefix.
+Every branch you create, including worktree branches, must start with `kingscott/` (for example `kingscott/fix/login-redirect`). This overrides branch names suggested by skills, plans, Linear issues, or repo patterns. If a tool creates the branch for you (such as Claude Code's `EnterWorktree`), rename it right away with `git branch -m kingscott/<name>`.
 
 ## Pull Requests
 
@@ -96,8 +98,9 @@ Before choosing a model or delegating, read `~/code/ai.md/MODEL-ROUTING.md`.
 
 # TypeSafe
 
+- The route-hint hook classifies every prompt with Jev in Claude Code, Codex, and pi, falling back to Haiku 4.5 or gpt-6-luna when Jev fails. The hint is evidence; MODEL-ROUTING.md decides.
 - Use the `typesafe-ai` skill when building or changing a TypeSafe integration, or when I ask for it.
-- Call the API directly only when code or a script needs a typed judgment (Choice, Noul, Score) over explicit evidence, such as a workflow handing out several tasks.
-- Do not call it for routing, delegation, factual lookups, rules already written down, or easily reversed choices.
+- Call the API from a script when a workflow needs a typed judgment (Choice, Noul, Score) over evidence already filtered to what the question needs, such as ranking tasks or picking one of a fixed set of handlers.
+- Do not send code, diffs, logs, or customer data. Do not use it for rules already written down or for anything code can compute.
 - Output is evidence, not the decision. If the call fails or the key is missing, decide without it and say so once.
-- Key: `TYPESAFE_API_KEY` in ~/.zshrc.
+- Key: `~/.config/typesafe/api_key` (owner-only file, never in a repo). ~/.zshrc exports it as `TYPESAFE_API_KEY`; the hook reads the file directly when the variable is absent.

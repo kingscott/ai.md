@@ -105,16 +105,14 @@ Update client applications to match the new contract.
 
 ## Branch Naming Convention
 
-Branch names should follow the pattern: `<type>/<short-description>`. Prefix all branches with `kingscott/`. 
-
-If specifically instructed, use this format if a tracked issue/ticket is used: `<ticket-number>/<subtask-number>/<short-description>`.
+Every branch uses one format: `kingscott/<type>/<short-description>`. If the work tracks a ticket, put the ticket ID at the start of the description.
 
 Examples:
-- `JOB-133123/JOB-321456/add-new-button-to-form`
-- `kingscott/add-user-auth`
-- `fix/null-pointer-error`
-- `docs/update-readme`
-- `refactor/simplify-api`
+- `kingscott/feat/add-user-auth`
+- `kingscott/fix/null-pointer-error`
+- `kingscott/feat/job-133123-add-new-button-to-form`
+- `kingscott/docs/update-readme`
+- `kingscott/refactor/simplify-api`
 
 ## Core Principles
 

@@ -15,7 +15,6 @@ Keep an eye on the `main` or `master` branch of the repo, and keep this branch u
 If a review bot leaves feedback you don't think is worth addressing, reply and resolve the comment. Format comments left on Scott's behalf with the template:
 ```md
 > [!NOTE]
-
 > 🤖 [MODEL-SLUG] replying on behalf of Scott King
 
 

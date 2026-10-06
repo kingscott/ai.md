@@ -1,6 +1,6 @@
 ---
 name: codex-review
-description: Ask Codex CLI (gpt-6-sol) for an independent code review of uncommitted changes, a branch diff, a commit, or a specific implementation. Use when the user asks Claude to have Codex or gpt-6-sol review work, when MODEL-ROUTING.md calls for a gpt-6-sol review perspective, or when Codex should audit a diff, find bugs or regressions, or compare Claude's implementation against requirements. For a review by Claude itself, use the normal review process instead.
+description: Ask Codex CLI (gpt-6.1-sol) for an independent code review of uncommitted changes, a branch diff, a commit, or a specific implementation. Use when the user asks Claude to have Codex or gpt-6.1-sol review work, when MODEL-ROUTING.md calls for a gpt-6.1-sol review perspective, or when Codex should audit a diff, find bugs or regressions, or compare Claude's implementation against requirements. For a review by Claude itself, use the normal review process instead.
 ---
 
 # Codex Review
@@ -27,10 +27,10 @@ PROMPT="$ARTIFACT_DIR/prompt.md"
 
 # Focused review. The prompt names the target, e.g. "Review the uncommitted changes to
 # hooks/ (run git diff and git status)" or "Review git diff main...HEAD".
-codex exec -m gpt-6-sol -s read-only -C "$PWD" -o "$REPORT" "$(cat "$PROMPT")" </dev/null
+codex exec -m gpt-6.1-sol -s read-only -C "$PWD" -o "$REPORT" "$(cat "$PROMPT")" </dev/null
 
 # Default review, no custom instructions (swap in --base main or --commit <sha>).
-codex -C "$PWD" review -c model='"gpt-6-sol"' --uncommitted > "$REPORT" </dev/null
+codex -C "$PWD" review -c model='"gpt-6.1-sol"' --uncommitted > "$REPORT" </dev/null
 ```
 
 Close stdin (`</dev/null`) or Codex waits for more input. Reviews can exceed Bash's 10-minute

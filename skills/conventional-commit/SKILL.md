@@ -32,12 +32,12 @@ Use this skill when the user wants help writing, revising, validating, or execut
 4. Add an optional footer for breaking changes or issue references.
    - Use `BREAKING CHANGE:` for incompatible behavior.
    - Use references like `Closes #123` or `Fixes #456`.
-   - When an AI agent contributed, add a GitHub-recognized `Co-authored-by`
-     trailer that includes both the provider and exact model name:
-     `Co-authored-by: OpenAI Codex (gpt-6-luna) <verified-address>`.
-     Use the matching provider/model for Claude or Ollama Cloud, and use the
-     provider's configured co-author address. Do not guess an address; omit the
-     trailer if no verified address is available.
+   - When an AI agent contributed, add a `Co-authored-by` trailer with the
+     provider, the exact model you are running as (replace `<model>`), and the
+     provider's address:
+     - OpenAI: `Co-authored-by: OpenAI Codex (<model>) <noreply@openai.com>`
+     - Anthropic: `Co-authored-by: Claude (<model>) <noreply@anthropic.com>`
+     For any other provider, omit the trailer. Do not guess an address.
 
 5. Validate the final message before returning or using it.
    - Ensure the header is present.

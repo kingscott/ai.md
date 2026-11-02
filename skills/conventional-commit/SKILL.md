@@ -38,7 +38,7 @@ Use this skill when the user wants help writing, revising, validating, or execut
      - OpenAI: `Co-authored-by: OpenAI Codex (<model>) <noreply@openai.com>`
      - Anthropic: `Co-authored-by: Claude (<model>) <noreply@anthropic.com>`
      - Mistral: `Co-authored-by: Mistral (<model>)
-<noreply @ mistral.ai>` 
+< vibe @ mistral.ai>` 
      For any other provider, omit the trailer. Do not guess an address.
 
 6. Validate the final message before returning or using it.

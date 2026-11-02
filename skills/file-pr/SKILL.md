@@ -17,7 +17,7 @@ GOOD
 
 Start the description with a simple explanation of the problem based on the user's original prompt, followed by a brief explanation of the solution. Do not just list the tasks completed during implementation.
 
-Commit messages follow the conventional-commit skill, not this one. Git history in a repo may use a different convention (e.g. `FLO-1234: summary`); that does not override conventional commit format when writing commits. Only the PR title mirrors the repo's existing PR conventions.
+Commit messages follow my `conventional-commit` skill, not this one. Git history in a repo may use a different convention (e.g. `FLO-1234: summary`); that does not override conventional commit format when writing commits. Only the PR title mirrors the repo's existing PR conventions.
 
 Here's some criteria for the PR description:
 - Load template from `.github/PULL_REQUEST_TEMPLATE.md` when present. If missing, create a structure that matches repo conventions

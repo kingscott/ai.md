@@ -1,6 +1,6 @@
 ---
 name: conventional-commit
-description: Write or review Conventional Commit messages with clear type, scope, subject, and optional body/footer formatting. Use when creating commit messages, suggesting commit text, checking commit message validity, or running `git commit` / staging and committing changes for any reason.
+description: Use when creating commit messages, suggesting commit text, checking commit message validity, or running `git commit` / staging and committing changes for any reason.
 license: MIT
 ---
 
@@ -32,21 +32,23 @@ Use this skill when the user wants help writing, revising, validating, or execut
 4. Add an optional footer for breaking changes or issue references.
    - Use `BREAKING CHANGE:` for incompatible behavior.
    - Use references like `Closes #123` or `Fixes #456`.
-   - When an AI agent contributed, add a `Co-authored-by` trailer with the
+5. When an AI agent contributed, add a `Co-authored-by` trailer with the
      provider, the exact model you are running as (replace `<model>`), and the
      provider's address:
      - OpenAI: `Co-authored-by: OpenAI Codex (<model>) <noreply@openai.com>`
      - Anthropic: `Co-authored-by: Claude (<model>) <noreply@anthropic.com>`
+     - Mistral: `Co-authored-by: Mistral (<model>)
+<noreply @ mistral.ai>` 
      For any other provider, omit the trailer. Do not guess an address.
 
-5. Validate the final message before returning or using it.
+6. Validate the final message before returning or using it.
    - Ensure the header is present.
    - Ensure the subject is specific and reviewable.
    - Ensure each section uses plain text only.
    - Ensure the message does not include literal escape sequences or HTML break tags such as `\n`, `\r`, `<br>`, or `<br/>`.
    - When multiple sections are needed, separate them with actual blank lines instead of encoded placeholders.
 
-6. When executing `git commit`, preserve real paragraph breaks.
+7. When executing `git commit`, preserve real paragraph breaks.
    - Prefer `git commit -F <file>` when writing a multi-line message.
    - If using `git commit -m`, use separate `-m` flags for header, body, and footer paragraphs.
    - Never build the commit message by embedding `\n`, `\r`, `<br>`, or `<br/>` inside the text passed to Git.

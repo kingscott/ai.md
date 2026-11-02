@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tower handoff"
+  short_description: "Hand work to a new agent terminal in Tower"
+  default_prompt: "Use $tower-handoff to hand this work to a new terminal in a worktree."
+
+policy:
+  allow_implicit_invocation: false
